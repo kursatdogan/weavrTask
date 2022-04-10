@@ -16,7 +16,8 @@ import static org.junit.Assert.*;
 
 public class goRestTest {
 
-    int newId;
+    public int newId;
+
 
     @BeforeClass
     public void setUpClass(){
@@ -27,9 +28,9 @@ public class goRestTest {
 
     @Test
     public void getRequest(){
-
+        //get request from member who already exist
         Response response = given().accept(ContentType.JSON)
-                .and().pathParam("id",1)
+                .and().pathParam("id",4064)
                 .when().get("/users/{id}");
         assertEquals(response.statusCode(),200);
         assertEquals(response.contentType(),"application/json; charset=utf-8");
@@ -40,97 +41,91 @@ public class goRestTest {
         String gender = response.path("gender");
         String status = response.path("status");
 
-        assertEquals(id,1);
-        assertEquals(name,"Menka Pilla");
-        assertEquals(email,"pilla_menka@pouros.biz");
-        assertEquals(gender,"female");
+        assertEquals(4064,id);
+        assertEquals("Triloki Iyengar",name);
+        assertEquals("iyengar_triloki@pfannerstill.com",email);
+        assertEquals(gender,"male");
         assertEquals(status,"inactive");
 
     }
 
     @Test
     public void postRequest(){
+        //create a new user with post request and using Map
         Map<String,Object> postMap = new HashMap<>();
         postMap.put("name","Michael Jordan");
-        postMap.put("email","mjordan@nba.com");
+        postMap.put("email","Mjordan@nba.com");
         postMap.put("gender","male");
         postMap.put("status","inactive");
-        Response response = given().accept(ContentType.JSON)
+        Response postResponse = given().accept(ContentType.JSON)
                 .and().contentType(ContentType.JSON)
                 .and().auth().oauth2("6397d92422bc792818606ac610306220d8c14bb27271bbf4c54e0a5968507737")
                 .body(postMap)
                 .when().post("/users");
-        response.prettyPrint();
-        assertEquals(response.statusCode(),201);
-        assertEquals(response.contentType(),"application/json; charset=utf-8");
-        assertEquals(postMap.get("name"),"Michael Jordan");
-        assertEquals(postMap.get("email"),"mjordan@nba.com");
-        assertEquals(postMap.get("gender"),"male");
-        assertEquals(postMap.get("status"),"inactive");
-        //newId = response.path("id");
-        //System.out.println("newId = " + newId);
-        int localId = response.path("id");
-        newId = localId;
-        System.out.println("newId = " + newId);
-
+        postResponse.prettyPrint();
+        assertEquals(201,postResponse.statusCode());
+        assertEquals("application/json; charset=utf-8",postResponse.contentType());
+        assertEquals("Michael Jordan",postMap.get("name"));
+        assertEquals("Mjordan@nba.com",postMap.get("email"));
+        assertEquals("male",postMap.get("gender"));
+        assertEquals("inactive",postMap.get("status"));
+        newId=postResponse.path("id");
     }
 
     @Test
     public void putRequest(){
+        //Updating the user who has been already created by post request with using map
         Map<String,Object> postMap = new HashMap<>();
         postMap.put("name","Michael Jordan");
-        postMap.put("email","mjordan@nba.com");
+        postMap.put("email","micjordan@nba.com");
         postMap.put("status","active");
-        Response response = given().accept(ContentType.JSON)
+        Response putResponse = given().accept(ContentType.JSON)
                 .and().contentType(ContentType.JSON)
-                .and().pathParam("id",newId)
+                .and().pathParam("id",4604)
                 .and().auth().oauth2("6397d92422bc792818606ac610306220d8c14bb27271bbf4c54e0a5968507737")
                 .body(postMap)
                 .when().put("/users/{id}");
-        response.prettyPrint();
-        System.out.println("newId = " + newId);
-        assertEquals(response.statusCode(),200);
-        assertEquals(response.contentType(),"application/json; charset=utf-8");
-        assertEquals(postMap.get("name"),"Michael Jordan");
-        assertEquals(postMap.get("email"),"mjordan@nba.com");
-        assertEquals(postMap.get("status"),"active");
-        assertEquals(response.path("gender"),"male");
+        putResponse.prettyPrint();
+        assertEquals(200,putResponse.statusCode());
+        assertEquals("application/json; charset=utf-8",putResponse.contentType());
+        assertEquals("Michael Jordan",postMap.get("name"));
+        assertEquals("micjordan@nba.com",postMap.get("email"));
+        assertEquals("active",postMap.get("status"));
+        assertEquals("male",putResponse.path("gender"));
 
     }
 
     @Test
     public void patchRequest(){
-
+        //updating the user name and email info with patch method using Map
+        //for assertion JsonPath object has been used
         Map<String,Object> patchMap = new HashMap<>();
         patchMap.put("name","Michael Jordan2");
-        patchMap.put("email","michaeljordan2@nba.com");
-        //goRest gorest = new goRest();
-        //gorest.setName("Michael Jordan2");
-        //gorest.setEmail("michaeljordan2@nba.com");
+        patchMap.put("email","mcjordan2@nba.com");
         Response response = given().accept(ContentType.JSON)
                 .and().contentType(ContentType.JSON)
-                .and().pathParam("id",newId)
+                .and().pathParam("id",4604)
                 .auth().oauth2("6397d92422bc792818606ac610306220d8c14bb27271bbf4c54e0a5968507737")
                 .body(patchMap)
                 .when().patch("/users/{id}");
         response.prettyPrint();
-        System.out.println("newId = " + newId);
         assertEquals(response.statusCode(),200);
-        assertEquals(response.contentType(),"application/json; charset=utf-8");
+        assertEquals("application/json; charset=utf-8",response.contentType());
 
         JsonPath json = response.jsonPath();
 
-        assertEquals(json.getString("name"),"Michael Jordan2");
-        assertEquals(json.getString("email"),"michaeljordan2@nba.com");
+        assertEquals("Michael Jordan2",json.getString("name"));
+        assertEquals("mcjordan2@nba.com",json.getString("email"));
 
     }
 
     @Test
     public void deleteRequest(){
+        //delete the user who created by post request
         Response response = given().accept(ContentType.JSON)
                 .auth().oauth2("6397d92422bc792818606ac610306220d8c14bb27271bbf4c54e0a5968507737")
-                .when().delete("/users/3518");
-        assertEquals(response.statusCode(),204);
+                .when().delete("/users/4604");
+        assertEquals(204,response.statusCode());
 
     }
 
