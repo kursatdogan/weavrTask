@@ -1,4 +1,4 @@
-package com.weavr.runners;
+package com.weavr.UI.runners;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -10,9 +10,9 @@ import org.junit.runner.RunWith;
                 "html:target/default-html-reports",
                 "rerun:target/rerun.txt"},
         features = "src/test/resources/features",
-        glue = "com/weavr/step_definitions",
-        dryRun = true
-       // tags = "@wip"
+        glue = "com/weavr/UI/step_definitions",
+        dryRun = false,
+        tags = "@wip"
 )
 
 public class CukesRunner {

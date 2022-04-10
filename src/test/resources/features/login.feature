@@ -28,5 +28,6 @@ Feature: User should able to login
       | standart__user          | secret_sauce | Epic sadface: Username and password do not match any user in this service |
       | locked_out_user         | secret-sauce | Epic sadface: Username and password do not match any user in this service |
       | performance_glitch_user | secret+sauce | Epic sadface: Username and password do not match any user in this service |
+      |                         |              | Epic sadface: Username is required                                                                         |
 
 

@@ -1,6 +1,6 @@
-package com.weavr.step_definitions;
+package com.weavr.UI.step_definitions;
 
-import com.weavr.utilities.Driver;
+import com.weavr.UI.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 

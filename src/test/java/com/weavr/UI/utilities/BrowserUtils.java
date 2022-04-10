@@ -1,4 +1,4 @@
-package com.weavr.utilities;
+package com.weavr.UI.utilities;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +17,14 @@ public class BrowserUtils {
             wait.until(expectation);
         } catch (Throwable error) {
             error.printStackTrace();
+        }
+    }
+
+    public static void waitFor(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

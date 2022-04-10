@@ -1,8 +1,8 @@
-package com.weavr.pages;
+package com.weavr.UI.pages;
 
-import com.weavr.utilities.BrowserUtils;
-import com.weavr.utilities.ConfigurationReader;
-import com.weavr.utilities.Driver;
+import com.weavr.UI.utilities.BrowserUtils;
+import com.weavr.UI.utilities.ConfigurationReader;
+import com.weavr.UI.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;

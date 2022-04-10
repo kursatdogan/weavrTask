@@ -1,9 +1,9 @@
-package com.weavr.step_definitions;
+package com.weavr.UI.step_definitions;
 
-import com.weavr.pages.LoginPage;
-import com.weavr.pages.ProductsPage;
-import com.weavr.utilities.ConfigurationReader;
-import com.weavr.utilities.Driver;
+import com.weavr.UI.pages.LoginPage;
+import com.weavr.UI.pages.ProductsPage;
+import com.weavr.UI.utilities.ConfigurationReader;
+import com.weavr.UI.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

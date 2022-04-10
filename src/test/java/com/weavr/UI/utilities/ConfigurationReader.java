@@ -1,4 +1,4 @@
-package com.weavr.utilities;
+package com.weavr.UI.utilities;
 
 import java.io.FileInputStream;
 import java.util.Properties;

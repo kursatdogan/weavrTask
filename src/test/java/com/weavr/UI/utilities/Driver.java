@@ -1,4 +1,4 @@
-package com.weavr.utilities;
+package com.weavr.UI.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
