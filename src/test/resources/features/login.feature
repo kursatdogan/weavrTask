@@ -1,5 +1,5 @@
 Feature: User should able to login
-
+@smoke
   Scenario: Login as a standard_user
     Given the user login with valid credentials
     Then the user should be able to see products page
