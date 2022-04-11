@@ -144,6 +144,17 @@ public class buyItemStepDefs {
         assertEquals(secondProductnameProductPage,secondProductActual);
     }
 
+    @When("the user clicks addToCart button for more than one item")
+    public void the_user_clicks_addToCart_button_for_more_than_one_item() {
+        productsPage.addBackpackBtn.click();
+        productsPage.addLightBtn.click();
+    }
+
+    @When("the user remove one item from checkout page")
+    public void the_user_remove_one_item_from_checkout_page() {
+        checkOutPage.removeLightBtn.click();
+    }
+
 
 
 

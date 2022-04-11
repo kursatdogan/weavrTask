@@ -11,6 +11,9 @@ public class CheckOutPage extends BasePage{
     @FindBy(xpath = "//button[@name='finish']")
     public WebElement finishBtn;
 
+    @FindBy(xpath = "//button[@name='remove-sauce-labs-bike-light']")
+    public WebElement removeLightBtn;
+
 
 
 }

@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 public class goRestTest {
 
-    public int newId;
+    int newId;
 
 
     @BeforeClass
